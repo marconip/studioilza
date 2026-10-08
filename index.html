@@ -1,25 +1,84 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Ilza</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Clique Make</title>
 </head>
 
 <style>
-    body {
-        background-image: url(./site-studio-ilza.jpg);
-        background-repeat: no-repeat;
-        background-position: top center;
-        height: 4265px;
+    @keyframes revealLogo {
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1);
+            filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.5));
+        }
+    }
+
+    /* Continuous gentle floating effect */
+    @keyframes floating {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-15px);
+            /* Moves up smoothly */
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    /* --- IMAGE STYLING --- */
+    img {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        animation:
+            revealLogo 1.2s ease-out forwards,
+            floating 4s ease-in-out 1.2s infinite;
     }
 </style>
 
-<body>
+<body class="p-5 bg-dark">
+    <img src="./studioilza.png" alt="clique make" class="img-fluid d-flex m-auto my-5">
+    <h1 class="text-center text-warning">
+        Site em desenvolvimento
+    </h1>
+
+    <h2 class="text-center text-white fs-4">
+        Em breve uma nova experiência interativa de nosso salão!
+    </h2>
+    <p class="text-center text-secondary">
+        Somos um espaço de beleza e estética, especialista e loiras e morena iluminada, cortes, terapia capilar e
+        tratamento de química em geral. Pensado exclusivamente para a mulheres que busca excelência, praticidade e
+        resultados impecáveis. Nossa equipe é composta por profissionais qualificados para entregar uma experiência sob
+        medida. Estamos no mercado há mais de 14 anos reunindo experiência e habilidades para o melhor de nossos
+        clientes.
+    </p>
 
 
 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+        integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
