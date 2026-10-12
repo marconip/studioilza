@@ -18,23 +18,23 @@ html {
   --primaria: #DCC5B1;
   --secundaria: #152B40;
   --complementar: #f5ede3;
-  --areanav: #000;
+  --areanav: black;
   --rodape: #A97B56;
-  --rodape2: #000;
-  --menu: #fff;
+  --rodape2: black;
+  --menu: white;
   --menu-hover: #f5cf39;
   --menu-ativo: #f5cf39;
   --titulos: #A97B56;
   --subtitulos: var(--secundaria);
   --texto: #333;
-  --link: #000;
+  --link: black;
   --link-hover: #A97B56;
   --fundo: #f5f5f5;
 }
 
 body {
   font-family: "Montserrat", sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.1875rem;
   font-style: normal;
   color: var(--texto);
   background-color: var(--fundo);
@@ -67,7 +67,7 @@ p a:hover {
   transition: 0.32s;
 }
 .btn:hover, .btn:active {
-  color: #fff;
+  color: white;
   border-bottom: 4px solid;
   border-color: var(--primaria);
   background-color: var(--secundaria);
@@ -76,7 +76,7 @@ p a:hover {
 
 .btn-nav {
   font-size: 1rem;
-  border-color: #000;
+  border-color: black;
   background-color: #4FCE5D;
   transition: 0.32s;
 }
@@ -138,6 +138,7 @@ h2 {
 h3 {
   font-size: 3.4375rem;
   color: var(--subtitulos);
+  margin-bottom: 30px;
 }
 @media (max-width: 767.98px) {
   h3 {
@@ -147,11 +148,20 @@ h3 {
 
 h4 {
   font-size: 1.875rem;
+  color: var(--subtitulos);
+  margin-bottom: 15px;
 }
 
 h5 {
-  font-size: 1.5rem;
-  color: var(--titulos) !important;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: white;
+}
+@media (max-width: 767.98px) {
+  h5 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
 }
 
 .navbar-toggler {
@@ -227,7 +237,7 @@ nav {
   }
 }
 nav.rolagem {
-  background-color: #000;
+  background-color: black;
 }
 
 @media (max-width: 767.98px) {
@@ -312,18 +322,13 @@ nav.rolagem {
   padding-bottom: 70px;
 }
 
-.open-close {
-  padding: 0 10px;
-  border-radius: 5px;
-  background-color: #fff;
-}
-
 .subir {
   font-size: 2.5rem;
-  color: red;
+  color: var(--secundaria);
   position: fixed;
   bottom: 30px;
   right: 15px;
+  z-index: 2;
   cursor: pointer;
   transition: 0.32s;
   opacity: 0;
@@ -398,7 +403,7 @@ figure:hover {
   position: absolute;
   left: 20px;
   z-index: 1;
-  color: #fff;
+  color: white;
 }
 @media (max-width: 767.98px) {
   .banner-titulos {
@@ -416,9 +421,9 @@ figure:hover {
   }
 }
 .banner-titulos h2 {
-  font-size: 4.875rem;
+  font-size: 4.375rem;
   text-align: left;
-  background: linear-gradient(59deg, yellow 10%, #f5cf39 38%, #fff 41%, yellow 65%);
+  background: linear-gradient(59deg, yellow 10%, #f5cf39 38%, white 41%, yellow 65%);
   -webkit-background-clip: text;
   color: transparent;
 }
@@ -454,26 +459,74 @@ figure:hover {
   align-items: center;
 }
 
-footer {
-  background-color: var(--rodape);
+.sociais {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.0625rem;
 }
-footer .emailcopiar {
-  cursor: pointer;
-}
-footer .emailcopiar:hover {
-  color: #000;
+.sociais p {
+  width: 100%;
+  max-width: 300px;
 }
 
-.footer-texto {
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
-  justify-content: center;
+.owl-nav {
+  position: relative;
+  bottom: 43%;
+  z-index: 1;
 }
-@media (max-width: 767.98px) {
-  .footer-texto {
-    align-items: center;
-  }
+.owl-nav .owl-prev,
+.owl-nav .owl-next {
+  visibility: hidden;
+}
+.owl-nav .owl-prev::before,
+.owl-nav .owl-next::before {
+  visibility: visible;
+  font-family: "bootstrap-icons";
+  font-size: 2rem;
+  padding: 5px;
+  border-radius: 100%;
+  background-color: white;
+}
+.owl-nav .owl-prev::before {
+  content: "\f284";
+}
+.owl-nav .owl-next {
+  position: absolute;
+  right: 0px;
+}
+.owl-nav .owl-next::before {
+  content: "\f285";
+}
+
+.tarja {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: var(--primaria);
+}
+.tarja p {
+  font-size: 1.0625rem;
+  color: var(--secundaria);
+  margin-bottom: 0;
+}
+
+.tesouras {
+  font-size: 1.0625rem;
+  color: var(--rodape);
+}
+
+.mapa-botoes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+footer {
+  background-color: var(--rodape);
 }
 
 .footer {
@@ -485,100 +538,31 @@ footer .emailcopiar:hover {
   }
 }
 .footer img {
-  width: 270px;
+  width: 300px;
 }
-.footer h3,
-.footer h4 {
-  font-size: 1.5rem;
-  color: #fff;
-  margin-top: 40px;
-  margin-bottom: 20px;
+.footer h5.servicos {
+  margin-bottom: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid white;
 }
 .footer p {
   font-size: 1rem;
-  font-weight: 300;
-  text-align: right;
-  color: #fff;
-  margin-bottom: 8px;
-}
-.footer p::after {
-  content: "";
-  display: block;
-  border-bottom: 1px solid;
-  border-color: #fff;
-  margin-top: 8px;
-}
-.footer p:last-child {
-  border: 0px;
-}
-.footer p a {
-  color: #fff;
-}
-.footer p a:hover {
-  color: #000 !important;
+  color: white;
 }
 
 .rodape {
   font-size: 0.875rem;
   font-weight: 300;
   text-align: center;
-  padding: 15px 0px;
+  padding: 12px 0px;
   background-color: var(--rodape2);
 }
 .rodape p {
-  color: #fff;
-  margin: 0;
+  margin-bottom: 0;
 }
 .rodape p a {
-  color: #fff;
+  color: white;
 }
 .rodape p a:hover {
-  color: red !important;
-}
-
-/*PROPAGANDA NO SITE*/
-.devdesign {
-  position: fixed;
-  bottom: 20px;
-  left: calc(50% - 185px);
-  z-index: 2;
-  width: 370px;
-  font-size: 1rem;
-  padding: 8px 15px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-  background-color: rgba(255, 255, 255, 0.9);
-  opacity: 0;
-}
-.devdesign.aparecer {
-  opacity: 1;
-}
-.devdesign .marca {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.devdesign .icones {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.devdesign .bi-x-square {
-  cursor: pointer;
-}
-.devdesign .bi-x-square:hover {
-  display: flex;
-  color: #fff !important;
-  background-color: #f00;
-}
-.devdesign a {
-  text-decoration: none;
-}
-.devdesign a:hover {
-  text-decoration: underline;
-}
-.devdesign p {
-  margin: 0px;
-}
-
-/*PROPAGANDA NO SITE FIM*//*# sourceMappingURL=style.css.map */
+  color: var(--menu-hover) !important;
+}/*# sourceMappingURL=style.css.map */

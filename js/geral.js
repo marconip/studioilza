@@ -108,6 +108,45 @@ window.addEventListener("scroll", (event) => {
 });
 
 
+//HORARIO DE FUNCIONARIO
+function atualizarStatus() {
+  const agora = new Date();
+  const dia = agora.getDay();
+  const hora = agora.getHours() + agora.getMinutes() / 60;
+  
+  // Seleciona todos os elementos com a classe 'open-close'
+  const tags = document.querySelectorAll('.open-close');
+  
+  // Se não encontrar nenhum elemento, interrompe a função
+  if (tags.length === 0) return; 
+
+  // Define se está aberto: de terça (2) a sábado (6) das 9h às 19h
+  const aberto = (dia >= 2 && dia <= 6) && (hora >= 9 && hora < 19);
+
+  // Define o texto que será inserido
+  let conteudoHtml = "";
+  if (aberto) {
+    conteudoHtml = `<b style="color: green;">Aberto</b> - Fecha às 19h`;
+  } else {
+    // Se for sábado após às 19h, domingo ou segunda, reabre na terça.
+    const reabreNaTerca = (dia === 6 && hora >= 19) || dia === 0 || dia === 1;
+    const diaReabertura = reabreNaTerca ? "terça-feira" : "amanhã";
+    conteudoHtml = `<b style="color: red;">Fechado</b> - Reabre ${diaReabertura} às 09h`;
+  }
+
+  // Aplica o conteúdo em cada uma das tags encontradas
+  tags.forEach(tag => {
+    tag.innerHTML = conteudoHtml;
+  });
+}
+
+// Executa ao carregar e define o intervalo de 5 minutos (300.000 ms)
+window.addEventListener('DOMContentLoaded', () => {
+  atualizarStatus();
+  setInterval(atualizarStatus, 300000);
+});
+
+
 //COPIAR TEXTO
 /* const copiar = document.querySelector(".emailcopiar");
 
@@ -126,21 +165,19 @@ copiar.addEventListener("copy", function (event) {
 //OWL CAROUSEL
 $('.owl-carousel').owlCarousel({
     loop: true,
+    nav: true,
     margin: 10,
     responsiveClass: true,
     responsive: {
         0: {
-            items: 2,
-            nav: true
+            items: 2
         },
         992: {
-            items: 3,
-            nav: false
+            items: 3
         },
         1200: {
-            items: 5,
-            nav: true,
-            loop: false
+            items: 6,
+            nav: false
         }
     }
 })
