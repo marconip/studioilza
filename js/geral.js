@@ -148,24 +148,37 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 //COPIAR TEXTO
-/* const copiar = document.querySelector(".emailcopiar");
-
-copiar.onclick = function () {
-    document.execCommand("copy");
-    alert('E-mail copiado!');
-}
-copiar.addEventListener("copy", function (event) {
-    event.preventDefault();
-    if (event.clipboardData) {
-        event.clipboardData.setData("text/plain", copiar.textContent);
-    }
-}); */
+document.querySelectorAll('.copiar-enviar > span').forEach(span => {
+    span.style.cursor = 'pointer'; // Transforma o cursor em mãozinha ao passar o mouse
+    
+    span.addEventListener('click', function() {
+        // Encontra a tag <small> de dentro do span clicado
+        const smallTag = this.querySelector('small');
+        
+        if (smallTag) {
+            // Pega o texto e remove espaços em branco extras das pontas (.trim())
+            const textoParaCopiar = smallTag.innerText.trim();
+            
+            // Copia o texto para a área de transferência
+            navigator.clipboard.writeText(textoParaCopiar).then(() => {
+                // Feedback visual opcional: altera o tooltip do Bootstrap se quiser
+                console.log('Copiado com sucesso: ' + textoParaCopiar);
+                alert('Copiado: ' + textoParaCopiar); // Você pode remover este alert se preferir
+            }).catch(err => {
+                console.error('Erro ao copiar: ', err);
+            });
+        }
+    });
+});
 
 
 //OWL CAROUSEL
 $('.owl-carousel').owlCarousel({
     loop: true,
-    nav: true,
+    nav: false,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
     margin: 10,
     responsiveClass: true,
     responsive: {
@@ -176,8 +189,36 @@ $('.owl-carousel').owlCarousel({
             items: 3
         },
         1200: {
-            items: 6,
-            nav: false
+            items: 6
         }
     }
-})
+});
+
+//AMPLIAR IMAGEM - SIMPLES
+// 1. Cria a estrutura do modal com botões de voltar (<), avançar (>) e fechar (X)
+let zoomImgDiv = document.createElement('div'); 
+zoomImgDiv.classList.add('modal-img'); 
+zoomImgDiv.innerHTML = `<b class="p"></b><img class="img-ampliada"><b class="n"></b><span class="c"></span>`; 
+document.querySelector("footer").after(zoomImgDiv); 
+
+let imgs = document.querySelectorAll(".img-galeria img"), idx = 0; 
+
+// 2. Função única para abrir e atualizar a imagem 
+const mude = (i) => { 
+    idx = (i + imgs.length) % imgs.length; // Garante o loop sem erros 
+    document.querySelector(".img-ampliada").src = imgs[idx].src.replace("png", "jpg"); 
+}; 
+
+// 3. Evento para abrir o modal ao clicar na foto 
+imgs.forEach((img, i) => img.addEventListener('click', () => { 
+    zoomImgDiv.style.display = "grid"; 
+    mude(i); 
+})); 
+
+// 4. Controle dos cliques (Voltar, Avançar e Fechar) 
+zoomImgDiv.addEventListener('click', (e) => { 
+    if (e.target.classList.contains('p')) mude(idx - 1); // Voltar 
+    else if (e.target.classList.contains('n')) mude(idx + 1); // Avançar 
+    else if (e.target.classList.contains('c')) zoomImgDiv.style.display = 'none'; // Fecha APENAS na class="c"
+});
+

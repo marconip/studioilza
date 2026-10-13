@@ -70,6 +70,22 @@ p {
         background-color: var(--secundaria);
         transition: .32s;
     }
+
+    @include media(sm-abaixo) {
+        font-size: $s16;
+        width: 100%;
+    }
+
+    &.bg-branco {
+        color: var(--secundaria);
+        background-color: white;
+
+        &:hover,
+        &:active {
+            color: white;
+            background-color: var(--secundaria);
+        }
+    }
 }
 
 .btn-nav {
@@ -95,6 +111,65 @@ p {
         font-size: $s14;
         padding-left: 5px;
         padding-right: 5px;
+    }
+
+    @include media(sm-abaixo) {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.botoes-compartilhar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: self-start;
+    width: 100%;
+    max-width: 420px;
+
+    @include media(sm-abaixo) {
+        justify-content: space-around;
+    }
+}
+
+.btn-compartilhar {
+    min-width: 188px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-bottom: 20px;
+    border: 1px solid;
+    border-bottom: 4px solid;
+    border-color: var(--rodape);
+    border-radius: 10px;
+    padding: 10px 15px;
+    background-color: var(--complementar);
+
+    @include media(sm-abaixo) {
+        min-width: 174px;
+        padding: 4px;
+    }
+
+    &:hover {
+        border-color: var(--texto);
+        background-color: white;
+    }
+
+    i {
+        font-size: $s35;
+        margin-right: 15px;
+    }
+
+    p {
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 0px;
+
+        &+p {
+            font-size: $s16;
+            text-transform: inherit;
+            font-weight: 400;
+        }
     }
 }
 
@@ -125,9 +200,8 @@ h2 {
     font-size: $s28;
     color: var(--titulos);
 
-    @include media (md-abaixo) {
-        font-size: $s40;
-        letter-spacing: initial;
+    @include media(md-abaixo) {
+        font-size: $s22;
     }
 }
 
@@ -136,8 +210,8 @@ h3 {
     color: var(--subtitulos);
     margin-bottom: 30px;
 
-    @include media(sm-abaixo) {
-        font-size: $s24;
+    @include media(md-abaixo) {
+        font-size: $s30;
     }
 }
 
@@ -145,6 +219,10 @@ h4 {
     font-size: $s30;
     color: var(--subtitulos);
     margin-bottom: 15px;
+
+    @include media(md-abaixo) {
+        font-size: $s24;
+    }
 }
 
 h5 {
@@ -160,7 +238,7 @@ h5 {
 
 .navbar-toggler {
     padding: 5px;
-    background-color: red;
+    background-color: var(--menu-hover);
 }
 
 .navbar-collapse {
@@ -168,6 +246,37 @@ h5 {
         border-top: 1px solid;
         border-color: var(--link);
         margin-top: 10px;
+        padding: 0px 10px;
+        border-radius: 10px;
+        background-color: black;
+    }
+}
+
+.contatos {
+    align-items: self-end;
+
+    @include media(sm-abaixo) {
+        flex-direction: column-reverse;
+    }
+
+    .titulo-botoes {
+        font-size: $s24;
+        color: var(--rodape);
+
+        @include media(sm-abaixo) {
+            font-size: $s22;
+        }
+    }
+
+}
+
+.copiar-enviar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10%;
+
+    small {
+        display: none;
     }
 }
 
@@ -226,9 +335,15 @@ section {
     }
 }
 
+.fixed-top {
+    z-index: 2;
+}
+
 nav {
-    height: 80px;
-    background-color: rgba(0, 0, 0, .5);
+    @include media(lg-acima) {
+        height: 80px;
+        background-color: rgba(0, 0, 0, .5);
+    }
 
     @include media(sm-abaixo) {
         transition: 1s;
@@ -269,6 +384,11 @@ nav {
         font-size: $s13;
         margin-left: 0px !important;
     }
+
+    @include media(sm-abaixo) {
+        text-align: center;
+    }
+
 }
 
 .navbar-nav .nav-link {
@@ -337,10 +457,10 @@ nav {
     transition: .32s;
     opacity: 0;
     text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
-}
 
-.subir:hover {
-    color: var(--primaria);
+    &:hover {
+        color: black;
+    }
 }
 
 .subir.aparecer {
@@ -412,30 +532,37 @@ figure {
     z-index: 1;
     color: white;
 
-    @include media(sm-abaixo) {
-        top: 130px;
+    @include media(lg-acima) {
+        top: 200px;
     }
 
     @include media(md) {
         top: 90px;
     }
 
-    @include media(lg-acima) {
-        top: 200px;
+    @include media(sm-abaixo) {
+        top: 220px;
     }
 
     h2 {
-        font-size: $s70;
         text-align: left;
         background: linear-gradient(59deg, yellow 10%, #f5cf39 38%, white 41%, yellow 65%);
         -webkit-background-clip: text;
         color: transparent;
 
-        @include media(md) {
-            font-size: $s45;
+        @include media(xxl-acima) {
+            font-size: $s100;
+        }
+
+        @include media(xl) {
+            font-size: $s70;
         }
 
         @include media(lg) {
+            font-size: $s40;
+        }
+
+        @include media(sm-abaixo) {
             font-size: $s40;
         }
     }
@@ -443,11 +570,7 @@ figure {
     p {
         font-size: $s24;
 
-        @include media(md) {
-            font-size: $s20;
-        }
-
-        @include media(lg) {
+        @include media(sm-abaixo) {
             font-size: $s16;
         }
     }
@@ -472,9 +595,13 @@ figure {
     }
 }
 
+.owl-dots {
+    display: none;
+}
+
 .owl-nav {
     position: relative;
-    bottom: 43%;
+    bottom: 50%;
     z-index: 1;
 
     .owl-prev,
@@ -484,7 +611,7 @@ figure {
         &::before {
             visibility: visible;
             font-family: "bootstrap-icons";
-            font-size: 2rem;
+            font-size: 1.5rem;
             padding: 5px;
             border-radius: 100%;
             background-color: white;
@@ -517,16 +644,30 @@ figure {
     border-radius: 10px;
     background-color: var(--primaria);
 
+    @include media (sm-abaixo) {
+        flex-direction: column;
+        width: 350px;
+        margin: 0 auto;
+    }
+
     p {
         font-size: $s17;
         color: var(--secundaria);
         margin-bottom: 0;
+
+        @include media (sm-abaixo) {
+            font-size: $s13;
+        }
     }
 }
 
 .tesouras {
     font-size: $s17;
     color: var(--rodape);
+
+    @include media (sm-abaixo) {
+        font-size: $s13;
+    }
 }
 
 .mapa-botoes {
@@ -534,6 +675,10 @@ figure {
     justify-content: space-between;
     align-items: center;
     margin-top: 30px;
+
+    @include media (sm-abaixo) {
+        flex-direction: column;
+    }
 }
 
 footer {
@@ -582,3 +727,90 @@ footer {
         }
     }
 }
+
+/**********AMPLIAR IMAGEM ****/
+.img-galeria img {
+    cursor: pointer;
+}
+
+.modal-img {
+    display: none;
+    place-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-img .p,
+.modal-img .n,
+.modal-img .c {
+    font-family: "bootstrap-icons";
+    position: absolute;
+    font-size: 36px;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.modal-img .p {
+    top: 50%;
+    left: 10px;
+
+    &::after {
+        content: "\F284";
+    }
+}
+
+.modal-img .n {
+    top: 50%;
+    right: 30px;
+
+    &::after {
+        content: "\F285";
+    }
+}
+
+.modal-img .c {
+    top: 50px;
+    right: 30px;
+    color: #ff0000;
+
+    &::after {
+        content: "\F623";
+    }
+}
+
+.modal-img .img-ampliada {
+    max-width: 80%;
+    height: 85vh;
+    animation: .6s ease 0s 1 zoom-img;
+}
+
+@media (max-width: 767px) {
+    .modal-img .img-ampliada {
+        height: auto;
+        max-height: 100%;
+    }
+
+    .modal-img .c,
+    .modal-img .n {
+        right: 10px;
+    }
+}
+
+@keyframes zoom-img {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+/*******AMPLIAR IMAGEM*********/
