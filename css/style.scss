@@ -647,7 +647,7 @@ figure {
     @include media (sm-abaixo) {
         flex-direction: column;
         width: 350px;
-        margin: 0 auto;
+        margin: 30px auto 0px auto;
     }
 
     p {
@@ -814,3 +814,80 @@ footer {
 }
 
 /*******AMPLIAR IMAGEM*********/
+
+/******* AVISO COOKIES *********/
+/* Estilos da página (apenas para demonstração) */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+
+/* 1. Estilo do Informativo Flutuante */
+.cookie-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    max-width: 400px;
+    background-color: #ffffff;
+    color: #333333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 9999;
+    box-sizing: border-box;
+
+    /* Efeito de transição suave ao sumir */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Classe utilitária para esconder o banner */
+.cookie-container.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    /* Impede cliques enquanto invisível */
+}
+
+/* Texto do informativo */
+.cookie-text {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Botão de fechar/aceitar */
+.cookie-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-end;
+    transition: background-color 0.2s ease;
+}
+
+.cookie-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Ajuste responsivo para telas menores (celulares) */
+@media (max-width: 480px) {
+    .cookie-container {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        max-width: 100%;
+    }
+}
+/******* FIM AVISO COOKIES *****/

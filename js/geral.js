@@ -110,55 +110,55 @@ window.addEventListener("scroll", (event) => {
 
 //HORARIO DE FUNCIONARIO
 function atualizarStatus() {
-  const agora = new Date();
-  const dia = agora.getDay();
-  const hora = agora.getHours() + agora.getMinutes() / 60;
-  
-  // Seleciona todos os elementos com a classe 'open-close'
-  const tags = document.querySelectorAll('.open-close');
-  
-  // Se não encontrar nenhum elemento, interrompe a função
-  if (tags.length === 0) return; 
+    const agora = new Date();
+    const dia = agora.getDay();
+    const hora = agora.getHours() + agora.getMinutes() / 60;
 
-  // Define se está aberto: de terça (2) a sábado (6) das 9h às 19h
-  const aberto = (dia >= 2 && dia <= 6) && (hora >= 9 && hora < 19);
+    // Seleciona todos os elementos com a classe 'open-close'
+    const tags = document.querySelectorAll('.open-close');
 
-  // Define o texto que será inserido
-  let conteudoHtml = "";
-  if (aberto) {
-    conteudoHtml = `<b style="color: green;">Aberto</b> - Fecha às 19h`;
-  } else {
-    // Se for sábado após às 19h, domingo ou segunda, reabre na terça.
-    const reabreNaTerca = (dia === 6 && hora >= 19) || dia === 0 || dia === 1;
-    const diaReabertura = reabreNaTerca ? "terça-feira" : "amanhã";
-    conteudoHtml = `<b style="color: red;">Fechado</b> - Reabre ${diaReabertura} às 09h`;
-  }
+    // Se não encontrar nenhum elemento, interrompe a função
+    if (tags.length === 0) return;
 
-  // Aplica o conteúdo em cada uma das tags encontradas
-  tags.forEach(tag => {
-    tag.innerHTML = conteudoHtml;
-  });
+    // Define se está aberto: de terça (2) a sábado (6) das 9h às 19h
+    const aberto = (dia >= 2 && dia <= 6) && (hora >= 9 && hora < 19);
+
+    // Define o texto que será inserido
+    let conteudoHtml = "";
+    if (aberto) {
+        conteudoHtml = `<b style="color: green;">Aberto</b> - Fecha às 19h`;
+    } else {
+        // Se for sábado após às 19h, domingo ou segunda, reabre na terça.
+        const reabreNaTerca = (dia === 6 && hora >= 19) || dia === 0 || dia === 1;
+        const diaReabertura = reabreNaTerca ? "terça-feira" : "amanhã";
+        conteudoHtml = `<b style="color: red;">Fechado</b> - Reabre ${diaReabertura} às 09h`;
+    }
+
+    // Aplica o conteúdo em cada uma das tags encontradas
+    tags.forEach(tag => {
+        tag.innerHTML = conteudoHtml;
+    });
 }
 
 // Executa ao carregar e define o intervalo de 5 minutos (300.000 ms)
 window.addEventListener('DOMContentLoaded', () => {
-  atualizarStatus();
-  setInterval(atualizarStatus, 300000);
+    atualizarStatus();
+    setInterval(atualizarStatus, 300000);
 });
 
 
 //COPIAR TEXTO
 document.querySelectorAll('.copiar-enviar > span').forEach(span => {
     span.style.cursor = 'pointer'; // Transforma o cursor em mãozinha ao passar o mouse
-    
-    span.addEventListener('click', function() {
+
+    span.addEventListener('click', function () {
         // Encontra a tag <small> de dentro do span clicado
         const smallTag = this.querySelector('small');
-        
+
         if (smallTag) {
             // Pega o texto e remove espaços em branco extras das pontas (.trim())
             const textoParaCopiar = smallTag.innerText.trim();
-            
+
             // Copia o texto para a área de transferência
             navigator.clipboard.writeText(textoParaCopiar).then(() => {
                 // Feedback visual opcional: altera o tooltip do Bootstrap se quiser
@@ -196,29 +196,48 @@ $('.owl-carousel').owlCarousel({
 
 //AMPLIAR IMAGEM - SIMPLES
 // 1. Cria a estrutura do modal com botões de voltar (<), avançar (>) e fechar (X)
-let zoomImgDiv = document.createElement('div'); 
-zoomImgDiv.classList.add('modal-img'); 
-zoomImgDiv.innerHTML = `<b class="p"></b><img class="img-ampliada"><b class="n"></b><span class="c"></span>`; 
-document.querySelector("footer").after(zoomImgDiv); 
+let zoomImgDiv = document.createElement('div');
+zoomImgDiv.classList.add('modal-img');
+zoomImgDiv.innerHTML = `<b class="p"></b><img class="img-ampliada"><b class="n"></b><span class="c"></span>`;
+document.querySelector("footer").after(zoomImgDiv);
 
-let imgs = document.querySelectorAll(".img-galeria img"), idx = 0; 
+let imgs = document.querySelectorAll(".img-galeria img"), idx = 0;
 
 // 2. Função única para abrir e atualizar a imagem 
-const mude = (i) => { 
+const mude = (i) => {
     idx = (i + imgs.length) % imgs.length; // Garante o loop sem erros 
-    document.querySelector(".img-ampliada").src = imgs[idx].src.replace("png", "jpg"); 
-}; 
+    document.querySelector(".img-ampliada").src = imgs[idx].src.replace("png", "jpg");
+};
 
 // 3. Evento para abrir o modal ao clicar na foto 
-imgs.forEach((img, i) => img.addEventListener('click', () => { 
-    zoomImgDiv.style.display = "grid"; 
-    mude(i); 
-})); 
+imgs.forEach((img, i) => img.addEventListener('click', () => {
+    zoomImgDiv.style.display = "grid";
+    mude(i);
+}));
 
 // 4. Controle dos cliques (Voltar, Avançar e Fechar) 
-zoomImgDiv.addEventListener('click', (e) => { 
+zoomImgDiv.addEventListener('click', (e) => {
     if (e.target.classList.contains('p')) mude(idx - 1); // Voltar 
     else if (e.target.classList.contains('n')) mude(idx + 1); // Avançar 
     else if (e.target.classList.contains('c')) zoomImgDiv.style.display = 'none'; // Fecha APENAS na class="c"
 });
 
+
+//AVISO COOKIES 
+const cookieBanner = document.getElementById('cookieBanner');
+const cookieBtn = document.getElementById('cookieBtn');
+
+// Verifica se o usuário já fechou o aviso anteriormente
+if (!localStorage.getItem('cookieAceito')) {
+    // Se NÃO existir no "cache", remove a classe 'hidden' para mostrar o banner
+    cookieBanner.classList.remove('hidden');
+}
+
+// Função ao clicar no botão
+cookieBtn.addEventListener('click', () => {
+    // Salva a informação no localStorage do navegador
+    localStorage.setItem('cookieAceito', 'true');
+
+    // Adiciona a classe para esconder o banner com efeito visual
+    cookieBanner.classList.add('hidden');
+});
