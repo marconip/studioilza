@@ -794,14 +794,6 @@ footer {
 }
 /*******AMPLIAR IMAGEM*********/
 /******* AVISO COOKIES *********/
-/* Estilos da página (apenas para demonstração) */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
-  margin: 0;
-  padding: 20px;
-}
-
 /* 1. Estilo do Informativo Flutuante */
 .cookie-container {
   position: fixed;
@@ -810,10 +802,9 @@ body {
   right: 20px;
   max-width: 400px;
   background-color: #ffffff;
-  color: #333333;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -827,15 +818,17 @@ body {
 
 /* Classe utilitária para esconder o banner */
 .cookie-container.hidden {
-  opacity: 0;
+  display: none;
+  /*opacity: 0;
   transform: translateY(20px);
   pointer-events: none;
-  /* Impede cliques enquanto invisível */
+   Impede cliques enquanto invisível */
 }
 
 /* Texto do informativo */
 .cookie-text {
-  font-size: 14px;
+  font-size: 15px;
+  color: #222;
   line-height: 1.5;
   margin: 0;
 }
@@ -847,7 +840,6 @@ body {
   border: none;
   padding: 10px 20px;
   font-size: 14px;
-  font-weight: bold;
   border-radius: 4px;
   cursor: pointer;
   align-self: flex-end;
