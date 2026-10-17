@@ -71,14 +71,19 @@ window.addEventListener('scroll', function () {
 
 
 //IR PARA O TOPO, REMOVE DA URL O TITULO DO MENU
+let whats = document.querySelector(".whats-flutuante");
 let botSubir = document.querySelector(".subir");
+
 window.addEventListener("scroll", (event) => {
     //sumir e aparecer
     let scroll = this.scrollY;
     if (scroll >= 1000) {
-        botSubir.classList.add("aparecer")
+        botSubir.classList.add("aparecer");
+        whats.setAttribute("id", "whatsapp-floating-button");
+
     } else {
-        botSubir.classList.remove("aparecer")
+        botSubir.classList.remove("aparecer");
+        whats.removeAttribute("id");
     }
 });
 botSubir.onclick = function () {

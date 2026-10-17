@@ -236,6 +236,20 @@ h5 {
     }
 }
 
+.h2 {
+    font-family: "Cinzel", serif;
+    font-style: normal;
+    font-size: $s28;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--titulos);
+    margin-bottom: 0px;
+
+    @include media(md-abaixo) {
+        font-size: $s22;
+    }
+}
+
 .navbar-toggler {
     padding: 5px;
     background-color: var(--menu-hover);
@@ -447,24 +461,31 @@ nav {
 }
 
 .subir {
-    font-size: $s40;
-    color: var(--secundaria);
-    position: fixed;
-    bottom: 30px;
-    right: 15px;
-    z-index: 2;
-    cursor: pointer;
-    transition: .32s;
-    opacity: 0;
-    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
 
-    &:hover {
-        color: black;
+    @include media(md-acima) {
+        font-size: $s40;
+        color: var(--secundaria);
+        position: fixed;
+        bottom: 30px;
+        right: 15px;
+        z-index: 2;
+        cursor: pointer;
+        transition: .32s;
+        opacity: 0;
+        text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+
+        &:hover {
+            color: black;
+        }
     }
 }
 
 .subir.aparecer {
     opacity: 1;
+
+    @include media(sm-abaixo) {
+        display: none;
+    }
 }
 
 figure {
@@ -544,7 +565,14 @@ figure {
         top: 220px;
     }
 
-    h2 {
+    .titulo-banner {
+        font-family: "Cinzel", serif;
+        font-style: normal;
+        font-size: $s28;
+        text-transform: uppercase;
+        line-height: 1;
+        margin-bottom: 0px;
+
         text-align: left;
         background: linear-gradient(59deg, yellow 10%, #f5cf39 38%, white 41%, yellow 65%);
         -webkit-background-clip: text;
@@ -882,4 +910,71 @@ footer {
         max-width: 100%;
     }
 }
+
 /******* FIM AVISO COOKIES *****/
+
+/******* WHATSAPP FLUTUANTE *****/
+.whats-flutuante {
+    @include media (md-acima) {
+        display: none;
+    }
+}
+
+@include media (sm-abaixo) {
+
+    #whatsapp-floating-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        z-index: 9999;
+    }
+
+    /* Estilos do Botão/Link */
+    #whatsapp-floating-button a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background-color: #25d366;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+    #whatsapp-floating-button a {
+        font-size: $s30+$s8;
+    }
+
+    /* Efeito Hover (Aumentar levemente ao passar o mouse) */
+    #whatsapp-floating-button a:hover {
+        transform: scale(1.1);
+    }
+
+    /* Animação de Pulso (Onda de choque atrás do botão) */
+    #whatsapp-floating-button .whatsapp-pulse {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #25d366;
+        border-radius: 50%;
+        z-index: -1;
+        animation: whatsappPulseAnima 2s infinite;
+    }
+
+    @keyframes whatsappPulseAnima {
+        0% {
+            transform: scale(1);
+            opacity: 0.5;
+        }
+
+        100% {
+            transform: scale(1.6);
+            opacity: 0;
+        }
+    }
+}
+
+/******* FIM WHATSAPP FLUTUANTE *****/
